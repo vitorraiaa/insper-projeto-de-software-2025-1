@@ -13,6 +13,7 @@ public class Compra {
     @Id
     private String id;
     private String usuario;
+    private String nome;
     private List<String> produtos = new ArrayList<>();
     private LocalDateTime dataCompra;
 
@@ -22,6 +23,14 @@ public class Compra {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getUsuario() {
