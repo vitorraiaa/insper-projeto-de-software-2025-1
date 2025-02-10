@@ -1,5 +1,6 @@
 package br.insper.loja.compra;
 
+import br.insper.loja.evento.EventoService;
 import br.insper.loja.usuario.Usuario;
 import br.insper.loja.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,16 @@ public class CompraService {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private EventoService eventoService;
+
     public Compra salvarCompra(Compra compra) {
         Usuario usuario = usuarioService.getUsuario(compra.getUsuario());
 
         compra.setNome(usuario.getNome());
         compra.setDataCompra(LocalDateTime.now());
+
+        eventoService.salvarEvento(usuario.getEmail(), "Compra realizada");
         return compraRepository.save(compra);
     }
 
